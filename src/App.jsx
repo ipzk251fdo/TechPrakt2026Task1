@@ -1,122 +1,111 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tasks, setTasks] = useState([
+    { id: 1, name: 'Технічна практика', category: 'Навчання', desc: 'Виконати завдання 1 пункт 5', date: '2026-06-19', completed: false },
+    { id: 2, name: 'Мій власний стиль', category: 'Робота', desc: 'Переробити дизайн інтерфейсу на чистий CSS', date: '2026-06-20', completed: false }
+  ]);
+
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('Робота');
+  const [desc, setDesc] = useState('');
+  const [date, setDate] = useState('');
+
+  const addTask = (e) => {
+    e.preventDefault();
+    if (!name || !desc) return;
+    const newTask = {
+      id: Date.now(),
+      name,
+      category,
+      desc,
+      date,
+      completed: false
+    };
+    setTasks([...tasks, newTask]);
+    setName('');
+    setDesc('');
+    setDate('');
+  };
+
+  const toggleTask = (id) => {
+    setTasks(tasks.map(task => task.id === id ? { ...task, completed: !task.completed } : task));
+  };
+
+  const deleteTask = (id) => {
+    setTasks(tasks.filter(task => task.id !== id));
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div className="app-container">
+      <h1 style={{ textAlign: 'center' }}>Мій трекер завдань</h1>
+      
+      {/* Форма додавання завдання */}
+      <form onSubmit={addTask} className="task-form">
+        <div className="form-row">
+          <div>
+            <label>Назва:</label>
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Що зробити?" />
+          </div>
+          <div>
+            <label>Категорія:</label>
+            <select value={category} onChange={(e) => setCategory(e.target.value)}>
+              <option value="Робота">Робота</option>
+              <option value="Навчання">Навчання</option>
+              <option value="Особисте">Особисте</option>
+            </select>
+          </div>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
+        <div className="form-group">
+          <label>Опис:</label>
+          <textarea value={desc} onChange={(e) => setDesc(e.target.value)} rows="2" placeholder="Деталі завдання..."></textarea>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+        <div className="form-group">
+          <label>Дедлайн:</label>
+          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+        </div>
+        <button type="submit" className="btn-submit">Додати до списку</button>
+      </form>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      {/* Таблиця завдань */}
+      <div className="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style={{ width: '80px', textAlign: 'center' }}>Статус</th>
+              <th>Категорія</th>
+              <th>Назва</th>
+              <th>Опис</th>
+              <th>Дедлайн</th>
+              <th style={{ width: '100px', textAlign: 'center' }}>Дії</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tasks.map(task => (
+              <tr key={task.id} className={task.completed ? 'completed-row' : ''}>
+                <td style={{ textAlign: 'center' }}>
+                  <input type="checkbox" checked={task.completed} onChange={() => toggleTask(task.id)} style={{ width: 'auto' }} />
+                </td>
+                <td>
+                  <span className="badge">{task.category}</span>
+                </td>
+                <td className={task.completed ? 'line-through' : ''} style={{ fontWeight: '500' }}>
+                  {task.name}
+                </td>
+                <td className={task.completed ? 'line-through' : ''}>
+                  {task.desc}
+                </td>
+                <td style={{ color: '#ef4444', fontSize: '15px' }}>{task.date}</td>
+                <td style={{ textAlign: 'center' }}>
+                  <button onClick={() => deleteTask(task.id)} className="btn-delete">Видалити</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
