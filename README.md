@@ -1,16 +1,38 @@
-# React + Vite
+<p align="center">
+  <img src="https://ztu.edu.ua/images/logo_small.png" alt="ЖИТОМИРСЬКА ПОЛІТЕХНІКА" width="180">
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h1 align="center">ЖИТОМИРСЬКА ПОЛІТЕХНІКА</h1>
+<p align="center"><strong>ДЕРЖАВНИЙ УНІВЕРСИТЕТ</strong></p>
 
-Currently, two official plugins are available:
+Виконання лабораторної роботи передбачає вивчення прийомів роботи з системою контролю версій **Git**:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* створення віддаленого репозиторію;
+* клонування віддаленого репозиторію;
+* виконання комітів;
+* створення гілок та перемикання між ними;
+* виконання комітів у різних гілках;
+* автентифікація на **GitHub** за допомогою токена та через **SSH**;
+* вивантаження локального репозиторію на **GitHub**.
 
-## React Compiler
+У практичній роботі №1 було:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. створено локальний репозиторій
+2. створено віддалений репозиторій на GitHub
+3. зроблено коміти у локальному репозиторії
+4. вивантажено усі коміти з локального у віддалений репозиторій
 
-## Expanding the ESLint configuration
+### Використані команди Git
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+У практичній роботі №1 було використано такі команди Git:
+
+- [x] `git init` — Ініціалізувати локальний репозиторій
+- [x] `git status` — Перевірити статус файлів
+- [x] `git add` — Додати зміни до індексу
+- [x] `git commit` — Зафіксувати зміни (створити коміт)
+- [x] `git remote add` — Прив'язати віддалений репозиторій
+- [x] `git push` — Відправити зміни на сервер
+- [x] `git pull` — Забрати та злити останні зміни з сервера
+- [x] `git branch` — Переглянути або створити гілки
+
+**Виконав:** Твоє Прізвище та Ім'я
