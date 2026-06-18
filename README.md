@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://ztu.edu.ua/images/logo_small.png" alt="ЖИТОМИРСЬКА ПОЛІТЕХНІКА" width="180">
+  <img src="https://ztu.edu.ua/images/logo.png" alt="ЖИТОМИРСЬКА ПОЛІТЕХНІКА" width="350">
 </p>
 
 <h1 align="center">ЖИТОМИРСЬКА ПОЛІТЕХНІКА</h1>
